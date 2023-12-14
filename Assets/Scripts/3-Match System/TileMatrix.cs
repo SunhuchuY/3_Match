@@ -67,6 +67,10 @@ public class TileMatrix : MonoBehaviour
 
     public async Task Swap(Tile currentTile, Tile changeToTargetTile)
     {
+        // 스왑 하고있는 타일이 있을 경우, 종료
+        if (currentTile.isSwiping || changeToTargetTile.isSwiping)
+            return;
+
         Vector3 originalCurrentTIlePosition = currentTile.transform.position;
         Vector3 originalChangeToTargetTIlePosition = changeToTargetTile.transform.position;
 
@@ -76,6 +80,11 @@ public class TileMatrix : MonoBehaviour
         currentTile.transform.DOMove(originalChangeToTargetTIlePosition, _swapDuration);
         await changeToTargetTile.transform.DOMove(originalCurrentTIlePosition, _swapDuration)
             .SetEase(Ease.InOutBack)
+            .OnStart(() => 
+            {
+                currentTile.isSwiping = true;
+                changeToTargetTile.isSwiping = true;
+            })
             .OnComplete(() =>
             {
                 currentTile.transform.position = originalCurrentTIlePosition;
@@ -83,8 +92,14 @@ public class TileMatrix : MonoBehaviour
 
                 currentTile.ChangeTargetTile(changeToTargetTileType);
                 changeToTargetTile.ChangeTargetTile(currentTileType);
+
+
+                currentTile.isSwiping = false;
+                changeToTargetTile.isSwiping = false;
             })
             .AsyncWaitForCompletion();
+
+
 
     }
 

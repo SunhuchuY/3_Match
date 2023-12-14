@@ -28,6 +28,8 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public bool isSwiping { get; set; }
+
     public TileEnum tileEnum { get; private set; }
 
     private Image _tileImage;

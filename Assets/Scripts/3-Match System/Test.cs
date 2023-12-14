@@ -8,7 +8,6 @@ public class Test : MonoBehaviour
 {
     void Start()
     {
-        transform.DOMove(Vector2.up * 100, 2);
     }
 
 }

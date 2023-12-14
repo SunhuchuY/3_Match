@@ -62,7 +62,6 @@ public class Match_3_Manager : MonoBehaviour
     public async Task TileEndDragEventHandler(TilePosition currentPosition, Tile curTile, Tile targetTile)
     {
         await _tileMatrix.Swap(curTile, targetTile);
-
         MatchAction(currentPosition);
     }
 

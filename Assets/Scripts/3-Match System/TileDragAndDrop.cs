@@ -70,7 +70,7 @@ public class TileDragAndDrop : MonoBehaviour
             // 타겟이 잡히지 않는 경우, 종료
             if (targetTile == null)
                 continue;
-
+             
             // 거리가 일정 범위 이상인 경우, 종료
             if (Vector2.Distance(position, targetTile.transform.position) > 1)
                 continue;

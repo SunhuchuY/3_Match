@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using Unity.Android.Types;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Rendering;
+using DG.Tweening;
+using System.Threading.Tasks;
+using Unity.Mathematics;
 
 public class TileMatrix : MonoBehaviour
 {
+    [SerializeField] [Range(0,3)]
+    private float _swapDuration = 1.25f;
+
     private const int _row = 5;
     public int row => _row;
 
@@ -62,18 +65,27 @@ public class TileMatrix : MonoBehaviour
         return (0, 0);
     }
 
-    public void Swap(Tile currentTile, Tile changeToTargetTile)
+    public async Task Swap(Tile currentTile, Tile changeToTargetTile)
     {
-        //var currentTilePosition = (currentTile.x, currentTile.y);
-        //var changeToTargetTilePosition = (changeToTargetTile.x, changeToTargetTile.y);
+        Vector3 originalCurrentTIlePosition = currentTile.transform.position;
+        Vector3 originalChangeToTargetTIlePosition = changeToTargetTile.transform.position;
 
-        var currentTileType = currentTile.tileEnum;
-        var changeToTargetTileType = changeToTargetTile.tileEnum;
+        TileEnum currentTileType = currentTile.tileEnum;
+        TileEnum changeToTargetTileType = changeToTargetTile.tileEnum;
 
-        //currentTile.SetPosition(changeToTargetTilePosition.x, changeToTargetTilePosition.y);
-        //changeToTargetTile.SetPosition(currentTilePosition.x, currentTilePosition.y);
+        currentTile.transform.DOMove(originalChangeToTargetTIlePosition, _swapDuration);
+        await changeToTargetTile.transform.DOMove(originalCurrentTIlePosition, _swapDuration)
+            .SetEase(Ease.InOutBack)
+            .OnComplete(() =>
+            {
+                currentTile.transform.position = originalCurrentTIlePosition;
+                changeToTargetTile.transform.position = originalChangeToTargetTIlePosition;
 
-        currentTile.ChangeTargetTile(changeToTargetTileType);
-        changeToTargetTile.ChangeTargetTile(currentTileType);
+                currentTile.ChangeTargetTile(changeToTargetTileType);
+                changeToTargetTile.ChangeTargetTile(currentTileType);
+            })
+            .AsyncWaitForCompletion();
+
     }
+
 }

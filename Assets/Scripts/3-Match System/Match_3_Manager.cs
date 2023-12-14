@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -44,9 +46,6 @@ public class Match_3_Manager : MonoBehaviour
     private List<TileSprite> _tileSprites = new List<TileSprite>();
     public List<TileSprite> tileSprites => _tileSprites;
 
-    private event Action<(int x, int y)> _TileEndDragEvent;
-
-
     private void Awake()
     {
         if (Instance == null)
@@ -58,14 +57,23 @@ public class Match_3_Manager : MonoBehaviour
     private void Start()
     {
         _grid.GridInstantiate();
-
-        // Add Event Action
-        _TileEndDragEvent += _match_3.Match_Action;
     }
 
-    public void TileEndDragEventHandler((int x, int y) currentPosition, Tile curTile ,Tile targetTile)
+    public async Task TileEndDragEventHandler(TilePosition currentPosition, Tile curTile, Tile targetTile)
     {
-        _tileMatrix.Swap(curTile, targetTile);
-        _TileEndDragEvent?.Invoke(currentPosition);
+        await _tileMatrix.Swap(curTile, targetTile);
+
+        MatchAction(currentPosition);
+    }
+
+    private void MatchAction(TilePosition currentPosition)
+    {
+        List<TilePosition> matchPositionList = _match_3.MatchSearchTileList(currentPosition);
+
+        // 매치가 3 미만인 경우, 종료
+        if (!_match_3.IsMatchOver3(matchPositionList))
+            return;
+
+        _match_3.Match_Action(matchPositionList);
     }
 }

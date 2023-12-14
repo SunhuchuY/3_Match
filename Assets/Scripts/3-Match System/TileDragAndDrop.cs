@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -75,7 +76,7 @@ public class TileDragAndDrop : MonoBehaviour
                 continue;
 
             // ≈∏∞Ÿ¿Ã ¿‚»˚
-            Match_3_Manager.Instance.TileEndDragEventHandler((nx, ny), _Tile, targetTile);
+            Match_3_Manager.Instance.TileEndDragEventHandler(new TilePosition { y = ny, x = nx }, _Tile, targetTile);
             return;
         }
     }

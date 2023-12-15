@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,11 +30,17 @@ public class Fever : MonoBehaviour
     private AudioClip[] feverSoundClip = new AudioClip[4]; // 인스펙터에서 할당하기 위한 AudioClip 변수
 
     [SerializeField]
-    private float _maxFever = 100000;
+    private float _maxFever = 100;
+
+    [SerializeField]
+    [Range(0, 15)]
+    private int _hyperFeverDuration = 10;
 
     private FeverType _feverType = FeverType.None;
 
     private float _currentFever;
+
+    private bool isHyperFever = false;
 
     public float currentFever 
     {
@@ -44,6 +51,10 @@ public class Fever : MonoBehaviour
 
         set
         {
+            // HyperFever 지속시간인 경우, 종료
+            if (isHyperFever)
+                return;
+
             _currentFever = value;
 
             // 피버가 안채워진 경우
@@ -56,7 +67,7 @@ public class Fever : MonoBehaviour
             {
                 if ((int)_feverType == 3)
                 {
-                    _feverType = 0;
+                    HyperFever();
                     return;
                 }
 
@@ -97,7 +108,6 @@ public class Fever : MonoBehaviour
             case FeverType.SuperFever:
                 _feverImage.color = _superFeverColor;
                 _feverText.text = "SuperFever";
-                _feverAudioSource.clip = Resources.Load<AudioClip>("SuperFeverSound");
                 break;
             case FeverType.HyperFever:
                 _feverImage.color = _hyperFeverColor;
@@ -109,10 +119,41 @@ public class Fever : MonoBehaviour
         _feverAudioSource?.Play();
     }
 
+    private async Task HyperFever()
+    {
+        HyperFeverOn();
+
+        Debug.Log(_hyperFeverDuration * 1000);
+
+        await Task.Delay(_hyperFeverDuration * 1000);
+
+        HyperFeverOff();
+    }
+
+    private void HyperFeverOn()
+    {
+        isHyperFever = true;
+
+        _currentFever = _maxFever;
+
+        UpdateFeverBar();
+    }
+
+    private void HyperFeverOff()
+    {
+        isHyperFever = false;
+
+        _currentFever = 0;
+        _feverType = 0;
+
+        FeverFunction(_feverType);
+        UpdateFeverBar();
+    }
+
     private void UpdateFeverBar()
     {
         float fillAmount = currentFever / _maxFever;
-        _feverImage.transform.localScale = 
+        _feverImage.transform.localScale =  
             new Vector3(fillAmount, _feverImage.transform.localScale.y , _feverImage.transform.localScale.z);
     }
 

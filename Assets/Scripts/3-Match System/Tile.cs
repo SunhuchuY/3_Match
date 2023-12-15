@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,10 @@ public class Tile : MonoBehaviour
     }
 
     public bool isSwiping { get; set; }
+    public bool isBoom { get; private set; }
+
+    [SerializeField]
+    private ParticleSystem _particleSystem;
 
     public TileEnum tileEnum { get; private set; }
 
@@ -37,7 +42,8 @@ public class Tile : MonoBehaviour
 
     private void Awake()
     {
-        _tileImage = GetComponent<Image>(); 
+        // GetComponent
+        _tileImage = GetComponent<Image>();
     }
 
     public void SetPosition(int _x, int _y)
@@ -81,5 +87,18 @@ public class Tile : MonoBehaviour
         // 타입에 맞는 이미지 교체 및 타입 변경
         tileEnum = _tileEnum;
         _tileImage.sprite = Match_3_Manager.Instance.tileSprites[(int)_tileEnum].tileSprite;
+    }
+
+    public async Task Boom()
+    {
+        isBoom = true;
+        _tileImage.color = new Color(_tileImage.color.r, _tileImage.color.g, _tileImage.color.b, 0);
+        _particleSystem.Play();
+
+        while (_particleSystem.isPlaying)
+            await Task.Delay(10);
+
+        _tileImage.color = new Color(_tileImage.color.r, _tileImage.color.g, _tileImage.color.b, 1);
+        isBoom = false;
     }
 }

@@ -134,7 +134,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865164457eb7d284cb6963b220ff0e4d
+      internalID: 1155136721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a290b1409c65dc847a5f70d9fa396622
+      internalID: 830179463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d1a9a237898cf4096af90b1de07309
+      internalID: 460346193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_3
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 0
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef5556ac0331b5244aa64b0d05717cba
+      internalID: 1343850594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 0
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ec525c59c111246be608a692de817f
+      internalID: -103257757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 0
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57fd774d2735f9c4bbc38b9c8887630f
+      internalID: -642136348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 1
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62174d0516ebaa140888cd27c7df612b
+      internalID: 1736656027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystal-qubodup-ccby3-32-blue_7
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 0
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6af58d3c94f5b94cbb1c84db53adc42
+      internalID: -1651045870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +313,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      crystal-qubodup-ccby3-32-blue_0: 1155136721
+      crystal-qubodup-ccby3-32-blue_1: 830179463
+      crystal-qubodup-ccby3-32-blue_2: 460346193
+      crystal-qubodup-ccby3-32-blue_3: 1343850594
+      crystal-qubodup-ccby3-32-blue_4: -103257757
+      crystal-qubodup-ccby3-32-blue_5: -642136348
+      crystal-qubodup-ccby3-32-blue_6: 1736656027
+      crystal-qubodup-ccby3-32-blue_7: -1651045870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

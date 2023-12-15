@@ -36,7 +36,7 @@ public class Timer : MonoBehaviour
         
         while (readyAudio.isPlaying)
         {
-            await Task.Delay(5); 
+            await Task.Delay(10); 
         }
     }
 

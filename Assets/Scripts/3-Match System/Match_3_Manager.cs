@@ -12,7 +12,10 @@ public enum TileEnum
     apple = 0,
     banana = 1,
     orange = 2,
-    grape = 3
+    grape = 3,
+    four = 4,
+    five = 5,
+    six = 6, 
 }
 
 

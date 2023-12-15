@@ -62,6 +62,10 @@ public class Match_3 : MonoBehaviour
                 if (_tileMatrix.GetTile(nx, ny).isSwiping)
                     continue;
 
+                // Boom 하고있는 타일, 종료
+                if (_tileMatrix.GetTile(nx, ny).isBoom)
+                    continue;
+
                 queue.Enqueue(new TilePosition { y = ny, x = nx });
                 check[ny, nx] = true;
                 matchList.Add(new TilePosition { y = ny, x = nx });
@@ -82,6 +86,7 @@ public class Match_3 : MonoBehaviour
             Debug.Log("x: " + matchPosition.x + "," + "y: " + matchPosition.y);
 
             var matchTile = _tileMatrix.GetTile(matchPosition.x, matchPosition.y);
+            matchTile.Boom();
             matchTile.SetRandomTile(_tileMatrix.GetTile(matchPosition.x, matchPosition.y).tileEnum);
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class TileDragAndDrop : MonoBehaviour
+public class TileDragAndDrop : MonoBehaviour, IDragAndDrop
 {
     readonly int[] dx = { 0, 0, 1, -1 };
     readonly int[] dy = { -1, 1, 0, 0 };
@@ -51,8 +51,12 @@ public class TileDragAndDrop : MonoBehaviour
         var pointerEventData = (PointerEventData)baseEventData;
         var position = Camera.main.ScreenToWorldPoint(pointerEventData.position);
 
-        // 현재 타일포지션과 마우스포지션이 변화가 없다면, 드래그 안한 것으로 간주
+        // 현재 타일포지션과 마우스포지션이 변화가 없다면, 종료
         if (Vector2.Distance(position, _Tile.transform.position) == 0)
+            return;
+
+        // boom 상태라면, 종료
+        if (_Tile.isBoom)
             return;
 
         // 타겟팅 되는 타일 체크

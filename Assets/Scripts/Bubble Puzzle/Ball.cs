@@ -21,22 +21,21 @@ public class Ball : MonoBehaviour
 
     private void LinkNode(Vector3 center, float radius)
     {
-        Collider[] colliders = Physics.OverlapSphere(center, radius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
 
         Debug.Log(colliders.Length);
 
         foreach (var collider in colliders) 
         {
             Debug.Log(collider.tag);
-
             // 볼 아니면, 종료
             if (!collider.CompareTag("Ball"))
                 continue;
 
             // 링크드리스트 노드 채우기
-            if(nextBall != null)
+            if(nextBall == null)
                 nextBall = collider.GetComponent<Ball>();   
-            else if(previousBall != null)
+            else if(previousBall == null)
                 previousBall = collider.GetComponent<Ball>();
 
         }
@@ -50,6 +49,7 @@ public class Ball : MonoBehaviour
 
         // 링크가 있는 오브젝트들 모두제거
         BubbleManager.Instance.LinkedListDestroy(this);
+        Destroy(gameObject);
     }
 
 }

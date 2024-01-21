@@ -40,12 +40,11 @@ public class BubbleManager : MonoBehaviour
     public void LinkedListDestroy(Ball ball)
     {
         Ball currentBall = ball;
- 
-        while(currentBall.nextBall != null || currentBall.previousBall != null)
-        {
-            Destroy(currentBall.previousBall?.gameObject);
-            Destroy(currentBall.nextBall?.gameObject);
-        }
+
+        if(currentBall.previousBall != null)
+            Destroy(currentBall.previousBall.gameObject);
+        if (currentBall.nextBall != null)
+            Destroy(currentBall.nextBall.gameObject);
     }
 
     public Sprite GetBallSprite(BallType type)
